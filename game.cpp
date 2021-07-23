@@ -42,8 +42,16 @@ void gameCycle(const std::string & max, const std::string & maxNumberBylvl) {
         }
 
         bool fail;
-        while ((fail = getUserNumber(maxNumber) != number) && parameters::retries < constants::MAX_RETRIES) {
-            std::cout << "Неудача, попробуйте ещё раз!" << std::endl;
+        int userNumber;
+        while ((fail = (userNumber = getUserNumber(maxNumber)) != number) && parameters::retries < constants::MAX_RETRIES) {
+            if (userNumber > number) {
+                std::cout << "Ваше число больше!" << std::endl;
+            }
+            if (userNumber < number) {
+                std::cout << "Ваше число меньше!" << std::endl;
+            }
+
+            //std::cout << "Неудача, попробуйте ещё раз!" << std::endl;
             parameters::retries += 1;
         }
         if (parameters::retries >= constants::MAX_RETRIES) {
