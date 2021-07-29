@@ -12,7 +12,7 @@ int generateNumber(int maxNumber) {
 }
 
 std::string coalesce(std::initializer_list<std::string> list) {
-    for (std::string str : list) {
+    for (const std::string& str : list) {
         if (!str.empty()) {
             return str;
         }
