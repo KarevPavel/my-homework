@@ -1,8 +1,9 @@
-//
-// Created by yacopsae on 28/07/2021.
-//
+#pragma once
 
-#ifndef CALC_DIV_H
-#define CALC_DIV_H
+#include <astnode.hpp>
 
-#endif //CALC_DIV_H
+class Div : public ASTNode {
+public:
+    explicit Div(ASTNode *pNode, ASTNode *pAstNode)
+            : ASTNode("/", pNode, pAstNode) {}
+};

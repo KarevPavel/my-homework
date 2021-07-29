@@ -1,8 +1,9 @@
-//
-// Created by yacopsae on 28/07/2021.
-//
+#pragma once
 
-#ifndef CALC_SUB_H
-#define CALC_SUB_H
+#include <astnode.hpp>
 
-#endif //CALC_SUB_H
+class Sub : public ASTNode {
+public:
+    explicit Sub(ASTNode *pNode, ASTNode *pAstNode)
+            : ASTNode("-", pNode, pAstNode) {}
+};

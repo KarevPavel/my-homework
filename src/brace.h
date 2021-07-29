@@ -1,8 +1,17 @@
-//
-// Created by yacopsae on 28/07/2021.
-//
+#pragma once
 
-#ifndef CALC_BRACE_H
-#define CALC_BRACE_H
+#include <astnode.hpp>
 
-#endif //CALC_BRACE_H
+class Brace : public ASTNode {
+public:
+    explicit Brace(std::string brace, ASTNode *pNode, ASTNode *pAstNode)
+            : ASTNode(brace, pNode, pAstNode) {}
+
+    explicit Brace(std::string name)
+            : ASTNode(name), name_(name) {}
+
+    std::string name() const { return name_; }
+
+private:
+    std::string name_;
+};

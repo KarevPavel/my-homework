@@ -1,14 +1,15 @@
-//
-// Created by yacopsae on 28/07/2021.
-//
+#pragma once
 
-#ifndef CALC_VARIABLE_H
-#define CALC_VARIABLE_H
+#include <astnode.hpp>
 
+class Variable : public ASTNode {
+public:
+    explicit Variable(std::string name)
+            : ASTNode(name)
+            , name_(name) {}
 
-class Variable {
+    std::string name() const { return name_; }
 
+private:
+    std::string name_;
 };
-
-
-#endif //CALC_VARIABLE_H

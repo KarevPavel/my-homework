@@ -1,8 +1,9 @@
-//
-// Created by yacopsae on 28/07/2021.
-//
+#pragma once
 
-#ifndef CALC_ADD_H
-#define CALC_ADD_H
+#include <astnode.hpp>
 
-#endif //CALC_ADD_H
+class Add : public ASTNode {
+public:
+    explicit Add(ASTNode *pNode, ASTNode *pAstNode)
+            : ASTNode("+", pNode, pAstNode) {}
+};

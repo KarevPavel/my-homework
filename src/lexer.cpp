@@ -50,10 +50,12 @@ Lexer::Token Lexer::next_token() {
                 return Token::Operator;
             }
             if (ch_ == '(') {
+                name_ += ch_;
                 next_char();
                 return Token::Lbrace;
             }
             if (ch_ == ')') {
+                name_ += ch_;
                 next_char();
                 return Token::Rbrace;
             }
