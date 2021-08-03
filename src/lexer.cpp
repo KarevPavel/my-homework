@@ -49,12 +49,12 @@ Lexer::Token Lexer::next_token() {
                 next_char();
                 return Token::Operator;
             }
-            if (ch_ == '(') {
+            if (isbrace(ch_)) {
                 name_ += ch_;
                 next_char();
                 return Token::Lbrace;
             }
-            if (ch_ == ')') {
+            if (isbrace(ch_)) {
                 name_ += ch_;
                 next_char();
                 return Token::Rbrace;
