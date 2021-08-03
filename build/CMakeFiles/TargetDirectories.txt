@@ -1,3 +1,0 @@
-/home/yacopsae/CLionProjects/my-homework/build/CMakeFiles/rebuild_cache.dir
-/home/yacopsae/CLionProjects/my-homework/build/CMakeFiles/edit_cache.dir
-/home/yacopsae/CLionProjects/my-homework/build/CMakeFiles/calc.dir

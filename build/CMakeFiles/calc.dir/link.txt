@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/calc.dir/src/lexer.cpp.o CMakeFiles/calc.dir/src/parser.cpp.o CMakeFiles/calc.dir/src/astnode.cpp.o CMakeFiles/calc.dir/src/main.cpp.o -o calc 
