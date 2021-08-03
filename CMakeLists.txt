@@ -11,7 +11,7 @@ add_executable(calc
         src/mul.h
         src/div.h
         src/add.h
-        src/sub.h src/brace.h)
+        src/sub.h)
 
 target_include_directories(calc PRIVATE include)
 

@@ -7,7 +7,7 @@
 #include <string>
 
 class Lexer {
-  public:
+public:
     enum class Token {
         Number,
         Operator,
@@ -15,6 +15,7 @@ class Lexer {
         Lbrace,
         Rbrace,
         Name,
+        Error
     };
 
     explicit Lexer(std::istream &in);
@@ -31,19 +32,26 @@ class Lexer {
 
     std::string get_name() const { return name_; }
 
-  protected:
-    bool isbrace(char ch) const;
+protected:
+    bool isrbrace() const;
 
-    bool isoperator(char ch) const;
+    bool islbrace() const;
 
-  private:
+    bool isbrace() const;
+
+    bool isoperator() const;
+
+private:
     enum class State {
         Empty,
         ReadNumber,
         ReadName,
         End,
     };
+
+    char next_not_space_char();
     char next_char();
+    static void throwIf(bool condition, const std::string & msg);
     bool end() const;
 
     State state_;
@@ -55,10 +63,17 @@ class Lexer {
 };
 
 inline Lexer::Lexer(std::istream &in)
-    : state_(State::Empty)
-    , number_(0)
-    , in_(in) {
+        : state_(State::Empty), number_(0), in_(in) {
     next_char();
+}
+
+inline char Lexer::next_not_space_char() {
+    for (in_.get(ch_); isspace(ch_); in_.get(ch_)) {
+        if (end()) {
+            break;
+        }
+    }
+    return ch_;
 }
 
 inline char Lexer::next_char() {
@@ -68,8 +83,12 @@ inline char Lexer::next_char() {
 
 inline bool Lexer::end() const { return in_.eof() || ch_ == '\n'; }
 
-inline bool Lexer::isbrace(char ch) const { return ch == '(' || ch == ')'; }
+inline bool Lexer::isrbrace() const { return ch_ == ')'; }
 
-inline bool Lexer::isoperator(char ch) const {
-    return ch == '+' || ch == '-' || ch == '*' || ch == '/';
+inline bool Lexer::islbrace() const { return ch_ == '('; }
+
+inline bool Lexer::isbrace() const { return islbrace() || isrbrace(); }
+
+inline bool Lexer::isoperator() const {
+    return ch_ == '+' || ch_ == '-' || ch_ == '*' || ch_ == '/';
 }
