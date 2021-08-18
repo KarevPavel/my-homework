@@ -15,7 +15,6 @@ public:
         Lbrace,
         Rbrace,
         Name,
-        Error
     };
 
     explicit Lexer(std::istream &in);
@@ -46,6 +45,7 @@ private:
         Empty,
         ReadNumber,
         ReadName,
+        ReadOperator,
         End,
     };
 

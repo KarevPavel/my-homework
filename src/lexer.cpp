@@ -2,7 +2,6 @@
 // Lexer implementation
 
 #include "lexer.hpp"
-
 #include <cctype>
 
 Lexer::Token Lexer::next_token() {
@@ -23,7 +22,7 @@ Lexer::Token Lexer::next_token() {
                             "Нельзя указывать число и переменную слитно!");
                     break;
                 }
-                state_ = State::Empty;
+                state_ = State::ReadOperator;
                 return Token::Number;
             case State::ReadName:
                 if (end()) {
@@ -37,8 +36,45 @@ Lexer::Token Lexer::next_token() {
                     next_char();
                     break;
                 }
-                state_ = State::Empty;
+                state_ = State::ReadOperator;
                 return Token::Name;
+            case State::ReadOperator:
+/*                if (end()) {
+                    throwIf(true,
+                            "Ожидался оператор!");
+                }*/
+                if (std::isspace(ch_)) {
+                    next_char();
+                    state_ = State::ReadOperator;
+                    break;
+                }
+                if (islbrace()) {
+                    name_ += ch_;
+                    next_char();
+                    state_ = State::Empty;
+                    return Token::Lbrace;
+                }
+                if (isrbrace()) {
+                    name_ += ch_;
+                    next_char();
+                    state_ = State::Empty;
+                    return Token::Rbrace;
+                }
+                if (std::isalpha(ch_)) {
+                    throwIf(true,
+                            "Между пременными/числами должен быть оператор!");
+                }
+                if (std::isdigit(ch_)) {
+                    throwIf(true,
+                            "Между пременными/числами должен быть оператор!");
+                }
+                if (isoperator()) {
+                    operator_ = ch_;
+                    next_char();
+                    state_ = State::Empty;
+                    return Token::Operator;
+                }
+                return Token::End;
             case State::Empty:
                 if (end()) {
                     state_ = State::End;
@@ -73,17 +109,13 @@ Lexer::Token Lexer::next_token() {
                 if (std::isdigit(ch_)) {
                     number_ = ch_ - '0';
                     state_ = State::ReadNumber;
-                    next_not_space_char();
-                    throwIf((!(isoperator() || isbrace() || isdigit(ch_) || isalpha(ch_)) && operator_.empty()),
-                            "Между числами/переменными должен быть оператор!");
+                    next_char();
                     break;
                 }
                 if (std::isalpha(ch_)) {
                     name_ = ch_;
                     state_ = State::ReadName;
                     next_char();
-                    throwIf((!(isoperator() || isbrace() || isdigit(ch_) || isalpha(ch_)) && operator_.empty()),
-                            "Между числами/переменными должен быть оператор!");
                     break;
                 }
         }
