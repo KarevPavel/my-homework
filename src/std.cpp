@@ -2,14 +2,10 @@
 // Created by yacopsae on 20/08/2021.
 //
 
-#include "../include/std.h"
+#include "std.h"
 
 //standard deviation
-Std::Std() : IStatistics(0, "std"), values() {
-}
-
-bool Std::check(double next) {
-    return true;
+Std::Std() : StatisticBase(0, "std"), values() {
 }
 
 void Std::setVal(double val) {

@@ -10,6 +10,7 @@
 class Max : public IStatistics {
 public:
     Max();
-    bool check(double next) override;
-    void setVal(double val) override;
+    void update(double next) override;
+    double eval() const override;
+    const char * name() const override;
 };

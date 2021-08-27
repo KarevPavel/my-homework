@@ -6,16 +6,20 @@
 #include <limits>
 #include <algorithm>
 #include <vector>
-#include "statistics.h"
+#include <set>
+#include "statistic_base.h"
 
-class Pct : public IStatistics {
+class Pct : public StatisticBase {
 public:
     Pct(char *name, double percent);
-    bool check(double next) override;
+
     void setVal(double val) override;
+
+    void update(double val) override;
+
     double eval() const override;
 
 private:
-    std::vector<double> values;
+    std::set<double> values;
     double _percent;
 };

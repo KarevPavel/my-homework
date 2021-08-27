@@ -8,7 +8,18 @@ set_target_properties(random_shuffle PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQ
 add_executable(chrono_example chrono_example.cpp)
 set_target_properties(chrono_example PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
 
-add_executable(statistics src/statistics.cpp src/min.cpp include/min.h src/min.cpp include/min.h main.cpp include/statistics.h src/max.cpp include/max.h src/average.cpp include/average.h src/std.cpp include/std.h src/pct.cpp include/pct.h src/pct90.cpp include/pct90.h src/pct95.cpp include/pct95.h)
+add_executable(statistics
+               main.cpp
+               src/statistics.cpp
+               src/min.cpp
+               src/min.cpp
+               src/max.cpp
+               src/average.cpp
+               src/std.cpp
+               src/pct.cpp
+               src/pct90.cpp
+               src/pct95.cpp
+               src/statistic_base.cpp)
 target_include_directories(statistics PRIVATE include)
 set_target_properties(statistics PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
 

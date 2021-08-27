@@ -6,13 +6,12 @@
 
 #include <vector>
 #include "cmath"
-#include "statistics.h"
+#include "statistic_base.h"
 
 //standard deviation
-class Std : public IStatistics {
+class Std : public StatisticBase {
 public:
     Std();
-    bool check(double next) override;
     void setVal(double val) override;
     double eval() const override;
     double average() const;

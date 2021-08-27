@@ -2,15 +2,21 @@
 // Created by yacopsae on 20/08/2021.
 //
 
-#include "../include/max.h"
+#include "max.h"
 
-Max::Max() : IStatistics(std::numeric_limits<double>::min(), "max") {
+Max::Max() :
+        IStatistics(std::numeric_limits<double>::min(), "max") {}
+
+void Max::update(double next) {
+    if (next > m_eval) {
+        m_eval = next;
+    }
 }
 
-bool Max::check(double next) {
-    return next > eval();
+double Max::eval() const {
+    return m_eval;
 }
 
-void Max::setVal(double val) {
-    m_eval = val;
+const char * Max::name() const {
+    return m_name;
 }

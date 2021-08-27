@@ -25,12 +25,33 @@ int main() {
     statistics[4] = new Pct90{};
     statistics[5] = new Pct95{};
 
-    double val = 0;
+/*    double val = 0;
     while (std::cin >> val) {
         for (size_t i = 0; i < statistics_count; ++i) {
             statistics[i]->update(val);
         }
+    }*/
+
+    double val[10] = {
+            1,
+            3,
+            56,
+            67,
+            23,
+            12,
+            45,
+            3,
+            22,
+            10
+    };
+
+
+    for (auto const & v : val) {
+        for (auto & statistic : statistics) {
+            statistic->update(v);
+        }
     }
+
 
     // Handle invalid input data
     if (!std::cin.eof() && !std::cin.good()) {

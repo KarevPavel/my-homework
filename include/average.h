@@ -3,14 +3,14 @@
 //
 
 #include "statistics.h"
+#include "statistic_base.h"
 
-class Average : public IStatistics {
+class Average : public StatisticBase {
 public:
     Average();
-    bool check(double next) override;
     void setVal(double val) override;
     double eval() const override;
 
 private:
-    double sum;
+    int sum;
 };
