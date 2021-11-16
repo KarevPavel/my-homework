@@ -1,12 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(01.hello_world)
+project(homework_6)
 
-add_executable(hello_world
-        hello_world.cpp
-        move_me_out.h move_me_out.cpp move_me_out.h)
+add_executable(homework_6 main.cpp list.hpp container.hpp)
 
-set_target_properties(hello_world PROPERTIES
+set_target_properties(homework_6 PROPERTIES
         CXX_STANDARD 17
         CXX_STANDARD_REQUIRED ON
-        )
+)
