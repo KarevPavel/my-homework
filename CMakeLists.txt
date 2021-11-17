@@ -2,7 +2,11 @@ cmake_minimum_required(VERSION 3.5)
 
 project(homework_6)
 
-add_executable(homework_6 main.cpp list.hpp container.hpp)
+add_executable(homework_6
+			   main.cpp
+			   list.hpp
+			   container.hpp
+			   ptr_list.hpp)
 
 set_target_properties(homework_6 PROPERTIES
         CXX_STANDARD 17

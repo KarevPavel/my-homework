@@ -8,9 +8,9 @@
 #include "container.hpp"
 
 template<typename T>
-class CustomList : public Container<T> {
+class ArrayList : public Container<T> {
  public:
-  CustomList() : _size(0), _currCapacity(10), _lastElement(nullptr) {}
+  ArrayList() : _size(0), _currCapacity(10), _lastElement(nullptr) {}
   void push_back(T t) override;
   void insert(int index, T t) override;
   void remove(int index) override;
@@ -25,7 +25,7 @@ class CustomList : public Container<T> {
 	return firstElementPtr() + index;
   }
 
-  friend std::ostream &operator<<(std::ostream &os, const CustomList<T> &list) {
+  friend std::ostream &operator<<(std::ostream &os, const ArrayList<T> &list) {
 	auto firstElement = list.firstElementPtr();
 	os << "[ ";
 	auto lastElIndex = list._size - 1;
@@ -50,7 +50,7 @@ class CustomList : public Container<T> {
 };
 
 template<typename T>
-void CustomList<T>::push_back(T t) {
+void ArrayList<T>::push_back(T t) {
   if (_lastElement == nullptr) {
 	_lastElement = new T[_currCapacity];
 	*_lastElement = t;
@@ -67,7 +67,7 @@ void CustomList<T>::push_back(T t) {
 }
 
 template<typename T>
-T *CustomList<T>::resize() {
+T *ArrayList<T>::resize() {
   std::cout << "Resize array from [" << _currCapacity << "] capacity to ";
   _currCapacity += _currCapacity * 2 / 3;
   std::cout << "[" << _currCapacity << "]" << std::endl;
@@ -85,12 +85,12 @@ T *CustomList<T>::resize() {
 }
 
 template<typename T>
-int CustomList<T>::size() {
+int ArrayList<T>::size() {
   return _size;
 }
 
 template<typename T>
-void CustomList<T>::remove(int index) {
+void ArrayList<T>::remove(int index) {
   if (index >= _size) {
 	return;
   }
@@ -105,7 +105,7 @@ void CustomList<T>::remove(int index) {
 }
 
 template<typename T>
-void CustomList<T>::insert(int index, T t) {
+void ArrayList<T>::insert(int index, T t) {
   if (index >= _size) {
 	std::cout << "Cannot do this, man" << std::endl;
   }
@@ -125,7 +125,7 @@ void CustomList<T>::insert(int index, T t) {
 }
 
 template<typename T>
-void CustomList<T>::erase() {
+void ArrayList<T>::erase() {
   auto addr = _lastElement - _size + 1;
   delete[] addr;
   _lastElement = nullptr;
@@ -133,6 +133,6 @@ void CustomList<T>::erase() {
 }
 
 template<typename T>
-T *CustomList<T>::firstElementPtr() const {
+T *ArrayList<T>::firstElementPtr() const {
   return _lastElement - _size + 1;
 }
